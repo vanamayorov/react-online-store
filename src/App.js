@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, lazy } from "react";
+import { Routes, Route } from 'react-router-dom';
+import Header from "./components/Header/Header";
+import Products from "./components/Products/Products";
+import productsData from './data/products.json';
+import { SuspenseWrapper } from "./components/SuspenseWrapper";
+
+const Cart = lazy(() => import("./components/Cart/Cart"));
+const Order = lazy(() => import('./components/Order/Order'));
+const ProductDetails = lazy(() => import('./components/ProductDetails/ProductDetails'));
 
 function App() {
+  const [products] = useState(productsData);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Products products={products} />} />
+        <Route path="/products/:id" element={
+          <SuspenseWrapper>
+            <ProductDetails />
+          </SuspenseWrapper>
+        } />
+        <Route path="/cart" element={
+          <SuspenseWrapper>
+            <Cart />
+          </SuspenseWrapper>
+
+        } />
+        <Route path="/order" element={
+          <SuspenseWrapper>
+            <Order />
+          </SuspenseWrapper>
+        } />
+      </Routes>
+    </>
+
+
   );
 }
 

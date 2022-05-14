@@ -1,0 +1,55 @@
+.img {
+    max-width: 200px;
+    height: 200px;
+}
+
+.qty {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.input {
+    margin-left: 25px;
+    max-width: 250px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-size: 28px;
+}
+
+@media(max-width: 676px) {
+    .img {
+        max-width: 100px;
+        height: 100px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .input {
+        margin-left: 15px;
+        max-width: 150px;
+    }
+
+    .qty {
+        margin-top: 15px;
+    }
+}
+
+@media(max-width: 480px) {
+    .input {
+        margin-left: 15px;
+        max-width: 100px;
+    }
+    .img {
+        max-width: 75px;
+        height: 75px;
+    }
+}
